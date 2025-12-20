@@ -1,0 +1,206 @@
+$p-color:red;
+$p-sibling:cyan;
+$p2-sibling: green;
+$s-border:true;
+
+@function convery-rem($pixel){
+    @return ($pixel/16)*1rem;
+}
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+h1{
+    color: $p-color;
+}
+//h1 and p are siblings. if u put h2 in middle of h1 and p this doesnt work in html
+h1+p{ 
+    color: $p-sibling;
+}
+
+h1+h2{
+    color: $p2-sibling;
+}
+
+//nested scss
+ul{
+    li{
+        color: orangered;
+        display: inline-block;
+    }
+    a{
+        color: yellowgreen;
+        &:hover{
+            text-decoration: overline; color: black;
+        }
+    }
+}
+
+@mixin f1($direction:row){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+f2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.C1{
+    @include f1(column);
+}
+.C2{
+    width: 40%;
+    height: 20vh;
+    padding:convert-rem(10px);
+    margin-right: 10px;
+}
+
+//inheritance
+.C3{
+    @extend f2;
+}
+
+$colors:(red:#FF0000,green:#00FF00, blue:#0000FF);
+@each $x, $y in $colors{
+    .text-#{$x}{color:$y};
+}
+
+
+.button {
+  background-color:yellow;
+  color: red;
+  width: fit-content;
+  border-radius: 2px;
+//   @if $s-border{
+//     border: 2px black solid;
+//   }
+  &:hover {
+    box-shadow: 0 12px 24px green;
+  }
+}
+
+[href^="https"]{
+    color: green;
+    &:hover{
+        text-decoration: wavy;
+    }
+}
+
+[href^="http"]{
+    color: red;
+    &:hover{
+        text-decoration: line-through;
+    }
+}
+
+[href$=".pdf"]{
+    color: brown;
+    &:hover{
+     font-size: 10;
+    }
+}
+
+table{
+    margin-top: 10px;
+    border: 1px black solid;
+    margin-left: 30px;
+    thead{
+        tr:nth-child(1){
+            background-color: grey;
+        }
+    }
+    tbody{
+        tr{
+            &:nth-child(odd){
+            background-color: orange;
+            &:hover{
+                color: white;
+            }
+        }
+        td{
+            padding: 14px;
+        }
+    }
+}
+}
+
+// @media screen and (max-width:1080px) {
+//     input{
+//         width: 100%;
+//         height: 30px;
+//         background-color:rgb(224, 215, 215);
+//         color:brown;
+//     }
+// }
+
+
+// @media screen and (min-width:1081px) {
+//     input{
+//         width: 50%;
+//         height: 30px;
+//         background-color:rgb(224, 215, 215);
+//         color:#0047ab;
+//     }
+// }
+
+.login{
+    background-color:rgb(38, 196, 38);
+    color: black;
+    font-size: 18px;
+    padding: 8px 8px;
+    border-radius: 6px;
+    display: inline-block;
+    &:hover{
+        background-color: green;
+    }
+}
+
+.container1{
+    // display: flex;
+    margin-left: 20%;
+    margin-top: 10%;
+    width: 60vh;
+    border: 3px solid black;
+    padding: 1%;
+    justify-items: center;
+    height: 80vh;
+    flex-direction: column;    
+}
+
+.container2{
+    margin-top: 20px;
+}
+
+.container3{
+    width: 400px;
+    height: 300px;
+    padding: 6px;
+    justify-content: center;
+    align-items: center;
+    &:hover{
+        transition: 0.1s;
+    }
+}
+
+.container0{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 6px;
+}
+
+imageContainer{
+      &:hover{
+        transform: scale(1.2);
+    }
+    img{
+        transition: 0.3s ease;
+        display: inline-block;
+    }
+}

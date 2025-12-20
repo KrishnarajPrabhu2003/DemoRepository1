@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>localStorage & sessionStorage</title>
+ 
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+        }
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+ 
+<body>
+ 
+    <h2>Web Storage Example</h2>
+ 
+    <label>Enter Key:</label><br>
+    <input type="text" id="key"><br><br>
+ 
+    <label>Enter Value:</label><br>
+    <input type="text" id="value"><br><br>
+ 
+    <p id="result"></p>
+ 
+    <h3>localStorage</h3>
+    <button onclick="setLocal()">Set</button>
+    <button onclick="getLocal()">Get</button>
+    <button onclick="removeLocal()">Remove</button>
+    <button onclick="clearLocal()">Clear</button>
+ 
+    <h3>sessionStorage</h3>
+    <button onclick="setSession()">Set</button>
+    <button onclick="getSession()">Get</button>
+    <button onclick="removeSession()">Remove</button>
+    <button onclick="clearSession()">Clear</button>
+ 
+    <script>
+        const result = document.getElementById("result");
+ 
+        /* ---------- localStorage ---------- */
+        function setLocal() {
+            const k = key.value;
+            const v = value.value;
+ 
+            if (k && v) {
+                localStorage.setItem(k, v);
+                result.innerHTML = "localStorage: Item stored";
+            } else {
+                result.innerHTML = "Enter key and value!";
+            }
+        }
+ 
+        function getLocal() {
+            const k = key.value;
+            const data = localStorage.getItem(k);
+ 
+            result.innerHTML = data
+                ? "localStorage Value: " + data
+                : "No item found";
+        }
+ 
+        function removeLocal() {
+            localStorage.removeItem(key.value);
+            result.innerHTML = "localStorage: Item removed";
+        }
+ 
+        function clearLocal() {
+            localStorage.clear();
+            result.innerHTML = "localStorage cleared";
+        }
+ 
+        /* ---------- sessionStorage ---------- */
+        function setSession() {
+            const k = key.value;
+            const v = value.value;
+ 
+            if (k && v) {
+                sessionStorage.setItem(k, v);
+                result.innerHTML = "sessionStorage: Item stored";
+            } else {
+                result.innerHTML = "Enter key and value!";
+            }
+        }
+ 
+        function getSession() {
+            const k = key.value;
+            const data = sessionStorage.getItem(k);
+ 
+            result.innerHTML = data
+                ? "sessionStorage Value: " + data
+                : "No item found";
+        }
+ 
+        function removeSession() {
+            sessionStorage.removeItem(key.value);
+            result.innerHTML = "sessionStorage: Item removed";
+        }
+ 
+        function clearSession() {
+            sessionStorage.clear();
+            result.innerHTML = "sessionStorage cleared";
+        }
+    </script>
+ 
+</body>
+</html>
+ 

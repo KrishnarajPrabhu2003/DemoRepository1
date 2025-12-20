@@ -1,0 +1,164 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+h1 {
+  color: red;
+}
+
+h1 + p {
+  color: cyan;
+}
+
+h1 + h2 {
+  color: green;
+}
+
+ul li {
+  color: orangered;
+  display: inline-block;
+}
+ul a {
+  color: yellowgreen;
+}
+ul a:hover {
+  text-decoration: overline;
+  color: black;
+}
+
+f2, .C3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.C1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.C2 {
+  width: 40%;
+  height: 20vh;
+  padding: convert-rem(10px);
+  margin-right: 10px;
+}
+
+.text-red {
+  color: #FF0000;
+}
+
+.text-green {
+  color: #00FF00;
+}
+
+.text-blue {
+  color: #0000FF;
+}
+
+.button {
+  background-color: yellow;
+  color: red;
+  width: fit-content;
+  border-radius: 2px;
+}
+.button:hover {
+  box-shadow: 0 12px 24px green;
+}
+
+[href^=https] {
+  color: green;
+}
+[href^=https]:hover {
+  text-decoration: wavy;
+}
+
+[href^=http] {
+  color: red;
+}
+[href^=http]:hover {
+  text-decoration: line-through;
+}
+
+[href$=".pdf"] {
+  color: brown;
+}
+[href$=".pdf"]:hover {
+  font-size: 10;
+}
+
+table {
+  margin-top: 10px;
+  border: 1px black solid;
+  margin-left: 30px;
+}
+table thead tr:nth-child(1) {
+  background-color: grey;
+}
+table tbody tr:nth-child(odd) {
+  background-color: orange;
+}
+table tbody tr:nth-child(odd):hover {
+  color: white;
+}
+table tbody tr td {
+  padding: 14px;
+}
+
+.login {
+  background-color: rgb(38, 196, 38);
+  color: black;
+  font-size: 18px;
+  padding: 8px 8px;
+  border-radius: 6px;
+  display: inline-block;
+}
+.login:hover {
+  background-color: green;
+}
+
+.container1 {
+  margin-left: 20%;
+  margin-top: 10%;
+  width: 60vh;
+  border: 3px solid black;
+  padding: 1%;
+  justify-items: center;
+  height: 80vh;
+  flex-direction: column;
+}
+
+.container2 {
+  margin-top: 20px;
+}
+
+.container3 {
+  width: 400px;
+  height: 300px;
+  padding: 6px;
+  justify-content: center;
+  align-items: center;
+}
+.container3:hover {
+  transition: 0.1s;
+}
+
+.container0 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 6px;
+}
+
+imageContainer:hover {
+  transform: scale(1.2);
+}
+imageContainer img {
+  transition: 0.3s ease;
+  display: inline-block;
+}
+
+/*# sourceMappingURL=main.css.map */
