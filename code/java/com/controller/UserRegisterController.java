@@ -19,7 +19,7 @@ public class UserRegisterController extends HttpServlet {
         UserDTO user = new UserDTO();
         user.setUsername(username);
         user.setPassword(password);
-        user.setFullname(fullname);
+        user.setFullName(fullname);
  
         UserDAO dao = new UserDAO();
  

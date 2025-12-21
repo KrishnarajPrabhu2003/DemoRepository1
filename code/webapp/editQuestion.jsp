@@ -72,7 +72,7 @@
 <h2>Update Question</h2>
  
 <form action="UpdateQuestionController" method="post">
-    <input type="hidden" name="questionid" value="<%=q.getQuestionid()%>">
+    <input type="hidden" name="questionid" value="<%=q.getQuestionId()%>">
  
     <label>Question:</label><br>
     <textarea name="questionText" required><%=q.getQuestionText()%></textarea>

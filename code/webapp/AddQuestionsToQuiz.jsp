@@ -86,10 +86,10 @@ a:hover {
 </head>
 <body>
 <div class="content">
-<h2>Add Questions to Quiz: <%= quiz.getTitle() %></h2>
+<h2>Add Questions to Quiz: <%= quiz.getQuizTitle() %></h2>
  
 <form action="AddQuestionsToQuizController" method="post">
-    <input type="hidden" name="quizid" value="<%= quiz.getQuizid() %>"/>
+    <input type="hidden" name="quizid" value="<%= quiz.getQuizId() %>"/>
     <table border="1" cellpadding="5" cellspacing="0">
         <tr>
             <th>Select</th>
@@ -102,7 +102,7 @@ a:hover {
         %>
         <tr>
             <td>
-                <input type="checkbox" name="questionIds" value="<%= q.getQuestionid() %>"/>
+                <input type="checkbox" name="questionIds" value="<%= q.getQuestionId() %>"/>
             </td>
             <td><%= srNo++ %></td>
             <td><%= q.getQuestionText() %></td>

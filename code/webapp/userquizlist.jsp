@@ -94,10 +94,10 @@
     %>
         <tr>
             <td><%= i++ %></td>
-            <td><%= q.getTitle() %></td>
+            <td><%= q.getQuizTitle() %></td>
             <td><%= q.getCategory() %></td>
             <td>
-                <a href="StartQuizController?quizid=<%= q.getQuizid() %>" class="button">Start Quiz</a>
+                <a href="StartQuizController?quizid=<%= q.getQuizId() %>" class="button">Start Quiz</a>
             </td>
         </tr>
     <%

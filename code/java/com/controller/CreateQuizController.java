@@ -19,7 +19,7 @@ public class CreateQuizController extends HttpServlet {
         String category = req.getParameter("category");
  
         QuizDTO quiz = new QuizDTO();
-        quiz.setTitle(title);
+        quiz.setQuizTitle(title);
         quiz.setCategory(category);
  
         QuizDAO dao = new QuizDAO();

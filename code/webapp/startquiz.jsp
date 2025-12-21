@@ -104,12 +104,12 @@ input[type="submit"]:hover {
 <body>
 
 <div>
-<h2>Quiz: <%= quiz.getTitle() %></h2>
+<h2>Quiz: <%= quiz.getQuizTitle() %></h2>
 <h3>Category: <%= quiz.getCategory() %></h3>
 
 <form action="SubmitQuizController" method="post">
 
-<input type="hidden" name="quizid" value="<%= quiz.getQuizid() %>">
+<input type="hidden" name="quizid" value="<%= quiz.getQuizId() %>">
 
 <%
     int qno = 1;
@@ -119,10 +119,10 @@ input[type="submit"]:hover {
 <p>
 <b>Q<%= qno++ %>. <%= q.getQuestionText() %></b><br>
 
-<input type="radio" name="q<%= q.getQuestionid() %>" value="A"> <%= q.getOptionA() %><br>
-<input type="radio" name="q<%= q.getQuestionid() %>" value="B"> <%= q.getOptionB() %><br>
-<input type="radio" name="q<%= q.getQuestionid() %>" value="C"> <%= q.getOptionC() %><br>
-<input type="radio" name="q<%= q.getQuestionid() %>" value="D"> <%= q.getOptionD() %><br>
+<input type="radio" name="q<%= q.getQuestionId() %>" value="A"> <%= q.getOptionA() %><br>
+<input type="radio" name="q<%= q.getQuestionId() %>" value="B"> <%= q.getOptionB() %><br>
+<input type="radio" name="q<%= q.getQuestionId() %>" value="C"> <%= q.getOptionC() %><br>
+<input type="radio" name="q<%= q.getQuestionId() %>" value="D"> <%= q.getOptionD() %><br>
 
 </p>
 <hr>

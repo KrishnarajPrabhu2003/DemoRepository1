@@ -48,7 +48,7 @@ public class UpdateQuestionController extends HttpServlet {
         String correctOption = request.getParameter("correctOption");
  
         QuestionDTO q = new QuestionDTO();
-        q.setQuestionid(id);
+        q.setQuestionId(id);
         q.setQuestionText(questionText);
         q.setOptionA(optionA);
         q.setOptionB(optionB);

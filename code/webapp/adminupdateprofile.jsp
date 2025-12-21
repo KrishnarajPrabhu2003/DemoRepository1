@@ -1,34 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
+
 <%
+    Integer adminId = (Integer) session.getAttribute("adminId");
     String adminName = (String) session.getAttribute("adminName");
-    if (adminName == null) {
+
+    if (adminId == null) {
         response.sendRedirect("adminlogin.jsp");
         return;
     }
-    
-    Integer totalQuiz = (Integer) request.getAttribute("totalQuiz");
-    Integer totalQuestions = (Integer) request.getAttribute("totalQuestions");
-    Integer totalUsers = (Integer) request.getAttribute("totalUsers");
-
 %>
- 
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin Dashboard</title>
+<title>Update Profile</title>
+
 <style>
     body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background: #eef2fa; /* Light bluish background */
+        background: #eef2fa;
     }
 
     /* TOP BAR */
     .topbar {
-        background: #1f3c88; /* Deep admin blue */
+        background: #1f3c88;
         color: white;
         padding: 15px 25px;
         display: flex;
@@ -80,14 +78,13 @@
     /* SIDEBAR */
     .sidebar {
         width: 220px;
-        background: #2a4fa3; /* Slightly lighter blue */
+        background: #2a4fa3;
         color: white;
         position: fixed;
         top: 50px;
         bottom: 0;
         left: 0;
         padding: 20px;
-        overflow-y: auto;
     }
 
     .sidebar h2 {
@@ -97,30 +94,12 @@
         padding-bottom: 10px;
     }
 
-    .sidebar button {
-        width: 100%;
-        background: #1f3c88;
-        color: white;
-        padding: 10px;
-        border: none;
-        text-align: left;
-        font-size: 16px;
-        cursor: pointer;
-        margin-top: 10px;
-        border-radius: 4px;
-    }
-
-    .sidebar button:hover {
-        background: #16306b;
-    }
-
     .sidebar a {
         display: block;
-        padding: 8px 12px;
-        margin-left: 10px;
+        padding: 10px;
         text-decoration: none;
         color: #eef2fa;
-        font-size: 15px;
+        font-size: 16px;
     }
 
     .sidebar a:hover {
@@ -131,22 +110,56 @@
     /* MAIN CONTENT */
     .content {
         margin-left: 240px;
-        margin-top: 50px;
+        margin-top: 80px;
         padding: 40px;
     }
 
-    .content h2 {
-        color: #1f3c88;
-        font-size: 26px;
+    .card {
+        background: white;
+        padding: 30px;
+        width: 400px;
+        border-radius: 6px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
-    .content p {
-        font-size: 18px;
-        color: #333;
+    .card h2 {
+        margin-top: 0;
+        color: #1f3c88;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-top: 15px;
+    }
+
+    input[type=text],
+    input[type=password] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    input[type=submit] {
+        margin-top: 20px;
+        background: #1f3c88;
+        color: white;
+        padding: 10px;
+        width: 100%;
+        border: none;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background: #16306b;
     }
 </style>
-
 </head>
+
 <body>
 
 <!-- TOP BAR -->
@@ -154,60 +167,49 @@
     <h1>Admin Dashboard</h1>
 
     <div class="user-menu" onclick="toggleUserMenu()">
-        <span>Welcome, <%= adminName %> </span>
-        
+        Welcome, <%= adminName %>
         <div class="user-dropdown" id="userDropdown">
-        <a href="adminupdateprofile.jsp">Update Profile</a>
+            <a href="adminupdateprofile.jsp">Update Profile</a>
             <a href="LogoutController">Logout</a>
         </div>
     </div>
 </div>
 
-<!-- LEFT SIDEBAR -->
+<!-- SIDEBAR -->
 <div class="sidebar">
     <h2>Dashboard Menu</h2>
+    <a href="AdminDashboardController">Dashboard</a>
+    <a href="QuizListController">Quiz List</a>
+    <a href="QuestionListController">Question List</a>
+    <a href="AdminLeaderboardController">Leaderboard</a>
+</div>
 
-    <button onclick="toggleQuizMenu()">Quiz Manager</button>
-    <div id="quizMenu" style="display:none;">
-        <a href="createnewquiz.jsp">Create New Quiz</a>
-        <a href="QuizListController">Quiz List</a>
-    </div>
+<!-- MAIN CONTENT -->
+<div class="content">
+    <div class="card">
+        <h2>Update Profile</h2>
 
-    <button onclick="toggleQuestionMenu()">Question Manager</button>
-    <div id="questionMenu" style="display:none;">
-        <a href="addquestion.jsp">Add New Question</a>
-        <a href="QuestionListController">Question List</a>
-    </div>
-    
-        <div>
-<a href="AdminLeaderboardController">Leaderboard</a>
+        <form action="AdminUpdateProfileController" method="post">
+
+            <label>Full Name</label>
+            <input type="text" name="fullname"
+                   value="<%= adminName %>" required>
+
+            <label>New Password</label>
+            <input type="password" name="password" required>
+
+            <input type="submit" value="Update Profile">
+
+        </form>
     </div>
 </div>
 
 <script>
-function toggleQuizMenu() {
-    let x = document.getElementById("quizMenu");
-    x.style.display = x.style.display === "none" ? "block" : "none";
-}
-
-function toggleQuestionMenu() {
-    let x = document.getElementById("questionMenu");
-    x.style.display = x.style.display === "none" ? "block" : "none";
-}
-
 function toggleUserMenu() {
     let menu = document.getElementById("userDropdown");
     menu.style.display = menu.style.display === "block" ? "none" : "block";
 }
-
-function toggleLeaderboardMenu() {
-    let menu = document.getElementById("userDropdown");
-    menu.style.display = menu.style.display === "block" ? "none" : "block";
-}
-
 </script>
 
 </body>
-
 </html>
- 

@@ -99,11 +99,11 @@ a:hover {
         <td><%= q.getOptionD() %></td>
         <td><%= q.getCorrectOption() %></td>
         <td>
-            <a href="UpdateQuestionController?id=<%= q.getQuestionid() %>">
+            <a href="UpdateQuestionController?id=<%= q.getQuestionId() %>">
                 <img src="https://cdn-icons-png.flaticon.com/512/84/84380.png" alt="Edit" width="16" height="16"/>
             </a>
             &nbsp;
-            <a href="DeleteQuestionController?id=<%= q.getQuestionid() %>"
+            <a href="DeleteQuestionController?id=<%= q.getQuestionId() %>"
                onclick="return confirm('Are you sure you want to delete this question?');">
                 <img src="https://tse1.mm.bing.net/th/id/OIP.4jQGwm3yrNFkDHVKFvvkZQHaHa?cb=ucfimg2&ucfimg=1&w=512&h=512&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Delete" width="16" height="16"/>
             </a>

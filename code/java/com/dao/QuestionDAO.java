@@ -12,7 +12,7 @@ public class QuestionDAO {
         try {
             Connection con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(
-                "INSERT INTO questions(questiontext, optiona, optionb, optionc, optiond, correctoption) VALUES (?, ?, ?, ?, ?, ?)"
+                "INSERT INTO questions(question_text, optiona, optionb, optionc, optiond, correct_option) VALUES (?, ?, ?, ?, ?, ?)"
             );
             ps.setString(1, q.getQuestionText());
             ps.setString(2, q.getOptionA());
@@ -37,13 +37,13 @@ public class QuestionDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 QuestionDTO q = new QuestionDTO();
-                q.setQuestionid(rs.getInt("questionid"));
-                q.setQuestionText(rs.getString("questiontext"));
+                q.setQuestionId(rs.getInt("questionid"));
+                q.setQuestionText(rs.getString("question_text"));
                 q.setOptionA(rs.getString("optiona"));
                 q.setOptionB(rs.getString("optionb"));
                 q.setOptionC(rs.getString("optionc"));
                 q.setOptionD(rs.getString("optiond"));
-                q.setCorrectOption(rs.getString("correctoption"));
+                q.setCorrectOption(rs.getString("correct_option"));
                 list.add(q);
             }
         } catch (Exception e) {
@@ -74,13 +74,13 @@ public class QuestionDAO {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 q = new QuestionDTO();
-                q.setQuestionid(rs.getInt("questionid"));
-                q.setQuestionText(rs.getString("questiontext"));
+                q.setQuestionId(rs.getInt("questionid"));
+                q.setQuestionText(rs.getString("question_text"));
                 q.setOptionA(rs.getString("optiona"));
                 q.setOptionB(rs.getString("optionb"));
                 q.setOptionC(rs.getString("optionc"));
                 q.setOptionD(rs.getString("optiond"));
-                q.setCorrectOption(rs.getString("correctoption"));
+                q.setCorrectOption(rs.getString("correct_option"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -92,7 +92,7 @@ public class QuestionDAO {
         try {
             Connection con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(
-                "UPDATE questions SET questiontext=?, optiona=?, optionb=?, optionc=?, optiond=?, correctoption=? WHERE questionid=?"
+                "UPDATE questions SET question_text=?, optiona=?, optionb=?, optionc=?, optiond=?, correct_option=? WHERE questionid=?"
             );
             ps.setString(1, q.getQuestionText());
             ps.setString(2, q.getOptionA());
@@ -100,7 +100,7 @@ public class QuestionDAO {
             ps.setString(4, q.getOptionC());
             ps.setString(5, q.getOptionD());
             ps.setString(6, q.getCorrectOption());
-            ps.setInt(7, q.getQuestionid());
+            ps.setInt(7, q.getQuestionId());
             int i = ps.executeUpdate();
             return i > 0;
         } catch (Exception e) {

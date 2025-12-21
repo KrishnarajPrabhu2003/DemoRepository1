@@ -29,6 +29,7 @@ public class AdminLoginController extends HttpServlet {
  
         if (admin != null) {
             HttpSession session = request.getSession();
+            session.setAttribute("adminId", admin.getAdminId());  
             session.setAttribute("adminName", admin.getFullname());   
             session.setAttribute("adminUsername", admin.getUsername());
  

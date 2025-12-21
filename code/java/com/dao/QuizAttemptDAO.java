@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.*;
 
 import com.DBConnector;
+import com.dto.LeaderboardDTO;
 
 public class QuizAttemptDAO {
 
@@ -32,11 +33,7 @@ public class QuizAttemptDAO {
             Connection con = DBConnector.getConnection();
      
             String sql =
-                "SELECT u.fullname, q.category, COUNT(qa.attemptid) AS attempts, MAX(qa.attempt_time) AS latest_time, " +
-                "(SELECT qa2.score FROM quizattempts qa2 JOIN quizzes q2 ON qa2.quizid = q2.quizid " +
-                "WHERE qa2.userid = qa.userid AND q2.category = q.category  ORDER BY qa2.attempt_time DESC LIMIT 1) AS latest_score " +
-                "FROM quizattempts qa JOIN users u ON qa.userid = u.userid JOIN quizzes q ON qa.quizid = q.quizid " +
-                "GROUP BY qa.userid, q.category ORDER BY latest_score DESC";
+"SELECT u.fullname, q.category, COUNT(*) AS attempts, MAX(qa.attempt_time) AS latest_time, MAX(qa.score) AS latest_score FROM quizattempts qa JOIN users u   ON qa.userid = u.userid JOIN quizzes q ON qa.quizid = q.quizid GROUP BY qa.userid, q.category ORDER BY latest_score DESC";
      
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -58,4 +55,38 @@ public class QuizAttemptDAO {
      
         return list;
     }
+
+    public List<LeaderboardDTO> getAdminLeaderboard() {
+
+        List<LeaderboardDTO> list = new ArrayList<>();
+
+        String sql =
+            "SELECT u.fullname, q.quiztitle, q.category, qa.score " +
+            "FROM quizattempts qa " +
+            "JOIN users u ON qa.userid = u.userid " +
+            "JOIN quizzes q ON qa.quizid = q.quizid " +
+            "WHERE qa.attemptid IN ( " +
+            "   SELECT MAX(attemptid) FROM quizattempts GROUP BY userid, quizid " +
+            ") ORDER BY qa.score DESC";
+
+        try (Connection con = DBConnector.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                LeaderboardDTO l = new LeaderboardDTO();
+                l.setFullName(rs.getString("fullname"));
+                l.setQuizTitle(rs.getString("quiztitle"));
+                l.setCategory(rs.getString("category"));
+                l.setScore(rs.getInt("score"));
+                list.add(l);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
 }

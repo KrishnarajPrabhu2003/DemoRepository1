@@ -31,7 +31,7 @@ public class SubmitQuizController extends HttpServlet {
         int score = 0;
 
         for (QuestionDTO q : questions) {
-            String userAns = request.getParameter("q" + q.getQuestionid());
+            String userAns = request.getParameter("q" + q.getQuestionId());
             if (userAns != null && userAns.equals(q.getCorrectOption())) {
                 score++;
             }

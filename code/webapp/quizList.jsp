@@ -93,10 +93,10 @@ a:hover {
 %>
             <tr>
                 <td><%= sr++ %></td>
-                <td><%= q.getTitle() %></td>
+                <td><%= q.getQuizTitle() %></td>
                 <td><%= q.getCategory() %></td>
-                <td><a href="AddQuestionsToQuizController?quizid=<%= q.getQuizid() %>">Add Questions</a></td>
-                <td><a href="QuizQuestionsController?quizid=<%= q.getQuizid() %>">List</a></td>
+                <td><a href="AddQuestionsToQuizController?quizid=<%= q.getQuizId() %>">Add Questions</a></td>
+                <td><a href="QuizQuestionsController?quizid=<%= q.getQuizId() %>">List</a></td>
             </tr>
 <%
         }
@@ -113,7 +113,7 @@ a:hover {
  
 <% if (selectedQuiz != null) { %>
  
-<h3>Quiz Title: <%= selectedQuiz.getTitle() %></h3>
+<h3>Quiz Title: <%= selectedQuiz.getQuizTitle() %></h3>
 <h4>Category: <%= selectedQuiz.getCategory() %></h4>
  
 <table border="1" cellpadding="5" cellspacing="0">

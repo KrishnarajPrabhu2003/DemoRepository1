@@ -37,4 +37,24 @@ public class AdminDAO {
  
         return admin;
     }
+    
+    public boolean updateProfile(int adminId, String fullName, String password) {
+
+        String sql =
+            "UPDATE admin SET fullname = ?, password = ? WHERE adminid = ?";
+
+        try (Connection con = DBConnector.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, fullName);
+            ps.setString(2, password);
+            ps.setInt(3, adminId);
+
+            return ps.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

@@ -1,24 +1,22 @@
 package com.dto;
- 
+
 public class QuizDTO {
-    private int quizid;
-    private String title;
+    private int quizId;
+    private String quizTitle;
     private String category;
- 
-    public int getQuizid() {
-        return quizid;
+
+    public int getQuizId() {
+        return quizId;
     }
-    public void setQuizid(int quizid) {
-        this.quizid = quizid;
+    public void setQuizId(int quizId) {
+        this.quizId = quizId;
     }
- 
-    public String getTitle() {
-        return title;
+    public String getQuizTitle() {
+        return quizTitle;
     }
-    public void setTitle(String title) {
-        this.title = title;
+    public void setQuizTitle(String quizTitle) {
+        this.quizTitle = quizTitle;
     }
- 
     public String getCategory() {
         return category;
     }

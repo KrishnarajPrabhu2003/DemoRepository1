@@ -17,7 +17,7 @@ public class UserDAO {
             );
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
-            ps.setString(3, user.getFullname());
+            ps.setString(3, user.getFullName());
    
             int row = ps.executeUpdate();
             if(row>0) {
@@ -47,7 +47,7 @@ public class UserDAO {
                 user.setUserId(rs.getInt("userid"));
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
-                user.setFullname(rs.getString("fullname"));
+                user.setFullName(rs.getString("fullname"));
             }
         } catch (Exception e) {
             e.printStackTrace();

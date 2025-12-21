@@ -81,7 +81,7 @@
 	</div>
 	</div>
 	<div class="content">
-		<h2>Welcome, <%= user.getFullname() %></h2>
+		<h2>Welcome, <%= user.getFullName() %></h2>
 	</div>
 
 

@@ -17,9 +17,9 @@ public class QuizDAO {
         try {
             Connection con = DBConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(
-                "INSERT INTO quizzes(title, category) VALUES (?, ?)"
+                "INSERT INTO quizzes(quiztitle, category) VALUES (?, ?)"
             );
-            ps.setString(1, quiz.getTitle());
+            ps.setString(1, quiz.getQuizTitle());
             ps.setString(2, quiz.getCategory());
  
             int i = ps.executeUpdate();
@@ -35,13 +35,13 @@ public class QuizDAO {
         List<QuizDTO> list = new ArrayList<>();
 
         try (Connection con = DBConnector.getConnection();
-             PreparedStatement ps = con.prepareStatement("SELECT quizid, title, category FROM quizzes");
+             PreparedStatement ps = con.prepareStatement("SELECT quizid, quiztitle, category FROM quizzes");
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 QuizDTO q = new QuizDTO();
-                q.setQuizid(rs.getInt("quizid"));
-                q.setTitle(rs.getString("title"));
+                q.setQuizId(rs.getInt("quizid"));
+                q.setQuizTitle(rs.getString("quiztitle"));
                 q.setCategory(rs.getString("category"));
                 list.add(q);
             }
@@ -78,8 +78,8 @@ public class QuizDAO {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     quiz = new QuizDTO();
-                    quiz.setQuizid(rs.getInt("quizid"));
-                    quiz.setTitle(rs.getString("title"));
+                    quiz.setQuizId(rs.getInt("quizid"));
+                    quiz.setQuizTitle(rs.getString("quiztitle"));
                     quiz.setCategory(rs.getString("category"));
                 }
             }
@@ -98,13 +98,13 @@ public class QuizDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
             	QuestionDTO q = new QuestionDTO();
-            	q.setQuestionid(rs.getInt("questionid"));
-                q.setQuestionText(rs.getString("questiontext"));
+            	q.setQuestionId(rs.getInt("questionid"));
+                q.setQuestionText(rs.getString("question_text"));
                 q.setOptionA(rs.getString("optiona"));
                 q.setOptionB(rs.getString("optionb"));
                 q.setOptionC(rs.getString("optionc"));
                 q.setOptionD(rs.getString("optiond"));
-                q.setCorrectOption(rs.getString("correctoption"));
+                q.setCorrectOption(rs.getString("correct_option"));
                 list.add(q);
             }
 		} catch (SQLException e) {
